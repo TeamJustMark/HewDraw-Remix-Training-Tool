@@ -75,8 +75,8 @@
 
   /* ---- READY bar ---- */
   .ready{position:relative;margin:46px 0 30px;height:54px;}
-  .ready .bar-y{position:absolute;left:-30vw;right:-30vw;top:12px;height:5px;background:var(--yellow);}
-  .ready .bar-b{position:absolute;left:-30vw;right:-30vw;top:22px;height:13px;background:var(--berry);}
+  .ready .bar-y{position:absolute;left:calc(50% - 50vw);right:calc(50% - 50vw);top:12px;height:5px;background:var(--yellow);}
+  .ready .bar-b{position:absolute;left:calc(50% - 50vw);right:calc(50% - 50vw);top:22px;height:13px;background:var(--berry);}
   .ready .rtext{
     position:absolute;left:6px;top:0;
     font-style:italic;font-weight:900;
@@ -457,14 +457,6 @@
     width:8px;height:3px;background:var(--slate);
   }
   ul.tech.lvl2 .ttext, ul.tech.lvl3 .ttext{font-size:14.5px;opacity:.92;}
-  .draft{
-    display:inline-block;
-    background:var(--slate);color:#f2ecdc;
-    font-style:italic;font-weight:800;font-size:12.5px;letter-spacing:.04em;
-    line-height:1.5;
-    padding:4px 12px;
-    box-shadow:3px 3px 0 rgba(242,207,91,.7);
-  }
   .inputsblock{
     margin-top:28px;
     border-top:3px solid var(--berry);
@@ -489,11 +481,6 @@
     text-shadow:2px 2px 0 rgba(242,207,91,.7);
     user-select:none;
     margin:0 2px;
-  }
-  .draft::before{
-    content:"DRAFT NOTE \2022 ";
-    font-weight:900;letter-spacing:.1em;font-style:normal;
-    opacity:.75;font-size:10.5px;
   }
 
   .hint{
@@ -524,6 +511,79 @@
   .move-badge.hdr-source{background:var(--yellow);color:#5a4508;}
   .move-badge.ultimate-source{background:var(--navy);color:#efe9f2;}
   .move-badge:focus-visible{outline:3px dashed var(--berry);outline-offset:3px;}
+  /* Fluid spacing keeps the same guide usable from narrow phones to desktops. */
+  :root{
+    --page-gutter:clamp(16px,3vw,30px);
+    --space-sm:clamp(8px,1.5vw,14px);
+    --space-md:clamp(12px,2vw,24px);
+    --space-lg:clamp(22px,4vw,44px);
+    --input-size:clamp(48px,12vw,88px);
+  }
+  .shell{
+    padding:clamp(20px,3.4vw,34px) var(--page-gutter) clamp(48px,8vw,90px);
+    padding-left:max(var(--page-gutter),env(safe-area-inset-left));
+    padding-right:max(var(--page-gutter),env(safe-area-inset-right));
+    padding-bottom:max(clamp(48px,8vw,90px),env(safe-area-inset-bottom));
+  }
+  #page,.shell header,.roster,.grid,.tags,.mode,.tile,.fighter,.tag,.tbody,
+  .schemegrid > *,.slabel,.vtext,.techpanel,.detail{min-width:0;}
+  h1{font-size:clamp(30px,6vw,64px);line-height:1.12;overflow-wrap:anywhere;}
+  .crumbs{gap:var(--space-sm);margin-bottom:var(--space-md);}
+  .crumb{min-height:44px;padding:10px 12px;max-width:100%;overflow-wrap:anywhere;}
+  .ready{height:auto;min-height:44px;margin:var(--space-lg) 0 var(--space-md);}
+  .ready .bar-y,.ready .bar-b{left:calc(-1 * var(--page-gutter));right:calc(-1 * var(--page-gutter));}
+  .ready .rtext{position:relative;display:block;left:0;padding:0 6px 8px;line-height:1.25;overflow-wrap:anywhere;font-size:clamp(21px,3.6vw,36px);}
+  .roster{margin-top:var(--space-md);gap:var(--space-sm);grid-template-columns:repeat(auto-fill,minmax(min(100%,clamp(88px,23vw,112px)),1fr));}
+  .fighter .fname{min-height:44px;padding:8px 5px;letter-spacing:.04em;}
+  .modes{margin-top:var(--space-lg);gap:var(--space-md);}
+  .mode{flex-basis:min(100%,300px);padding:clamp(18px,3vw,26px) clamp(18px,3vw,28px);}
+  .mode .mtitle{font-size:clamp(21px,3vw,26px);overflow-wrap:anywhere;}
+  .grid{margin-top:var(--space-lg);gap:var(--space-md);}
+  .tile{min-width:0;min-height:44px;}
+  .tags{gap:var(--space-sm);}
+  .tag{min-width:min(180px,100%);max-width:100%;min-height:48px;}
+  .tag .tbody{padding:clamp(10px,1.5vw,14px);overflow-wrap:anywhere;}
+  .tag .pnum{font-size:clamp(16px,2.4vw,21px);line-height:1.3;}
+  .tag .chip{flex-shrink:0;}
+  .detail{margin-top:var(--space-lg);}
+  .dtitle,.techtitle{font-size:clamp(20px,3vw,26px);overflow-wrap:anywhere;}
+  .ddesc,.vtext,.ttext,.note,.ilabel,.draft,.tiptext,.sources{overflow-wrap:anywhere;}
+  .dvar{flex-wrap:wrap;gap:var(--space-sm);}
+  .vtext{flex:1 1 220px;}
+  .note{max-width:100%;line-height:1.5;padding:8px 12px;}
+  .inputline{gap:var(--space-sm);max-width:100%;}
+  .btn-group{flex-wrap:wrap;gap:var(--space-sm);max-width:100%;min-width:0;}
+  .input-option{display:inline-flex;align-items:center;gap:var(--space-sm);}
+  .btnimg{width:var(--input-size);height:var(--input-size);flex-shrink:0;}
+  .btnimg.small{width:clamp(44px,10vw,60px);height:clamp(44px,10vw,60px);}
+  .btnimg.tiny{width:34px;height:34px;}
+  .joiner{font-size:clamp(24px,6vw,40px);}
+  .schemegrid{gap:var(--space-md);}
+  .settings{padding:clamp(14px,2.5vw,20px);}
+  .srow{flex-wrap:wrap;gap:var(--space-sm);}
+  .schemetip{padding:var(--space-md);gap:var(--space-sm);}
+  .tags.adv{margin-top:var(--space-lg);}
+  .inputsblock{margin-top:var(--space-lg);padding-top:var(--space-md);}
+  .hint,.sources{margin-top:var(--space-lg);}
+  .move-badge{min-height:32px;display:inline-flex;align-items:center;padding:7px 10px;}
+  @media (max-width:600px){
+    .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+    .tile{aspect-ratio:auto;flex-direction:row;min-height:76px;padding:10px 8px;gap:8px;}
+    .tile .gicon{flex:0 0 30px;width:30px;}
+    .tile .tname{font-size:12px;text-align:left;overflow-wrap:anywhere;}
+    .tile.accent .badge{flex:0 0 38px;width:38px;border-width:2px;font-size:10px;}
+    .tags{display:grid;grid-template-columns:minmax(0,1fr);}
+    .tag{width:100%;min-width:0;}
+    .mode{max-width:none;}
+    .pnum.advname{font-size:15px;}
+    ul.tech.lvl0 > li{padding-left:18px;}
+    ul.tech.lvl1 > li,ul.tech.lvl2 > li,ul.tech.lvl3 > li{padding-left:14px;}
+    ul.tech.lvl0 > li::before{width:8px;height:8px;}
+    ul.tech.lvl2 > li::before,ul.tech.lvl3 > li::before{left:1px;width:6px;}
+    .hdr{white-space:normal;margin-left:0;}
+    .hint{font-size:12px;line-height:1.5;}
+  }
+
 </style>
 </head>
 <body>
@@ -542,7 +602,9 @@
 </svg>
 <div class="shell">
   <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
-  <div id="page"></div><footer class="sources">Moves: <a href="https://docs.google.com/document/d/1dv7XGIRGmmYVPWyREW39VAehTUFeXqRGn2Zch5O-Fyw/edit" target="_blank" rel="noopener noreferrer">HDR for SSBU Dummies</a> (v0.49.10 beta with v0.50 prerelease notes; newer rework sections used). Missing entries use <a href="https://www.ssbwiki.com/Super_Smash_Bros._Ultimate" target="_blank" rel="noopener noreferrer">SmashWiki</a> Ultimate moves. Individual move cards link to their source. SmashWiki excerpts are shortened and reformatted, credited to SmashWiki contributors, and remain under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. Sources retrieved September 19, 2026. Controls follow this guide’s custom HDR mapping.</footer>
+  <div id="page"></div><!-- Source and license attribution (non-displayed):
+<footer class="sources">Moves: <a href="https://docs.google.com/document/d/1dv7XGIRGmmYVPWyREW39VAehTUFeXqRGn2Zch5O-Fyw/edit" target="_blank" rel="noopener noreferrer">HDR for SSBU Dummies</a> (v0.49.10 beta with v0.50 prerelease notes; newer rework sections used). Missing entries use <a href="https://www.ssbwiki.com/Super_Smash_Bros._Ultimate" target="_blank" rel="noopener noreferrer">SmashWiki</a> Ultimate moves. Individual move cards link to their source. SmashWiki excerpts are shortened and reformatted, credited to SmashWiki contributors, and remain under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. Sources retrieved September 19, 2026. Controls follow this guide’s custom HDR mapping.</footer>
+-->
 </div>
 
 <script>
@@ -774,10 +836,9 @@ function renderTechBody(items, lvl){
     const kids = it[1];
     const isHdr = it[2]==='hdr';
     const isNote = text.charAt(0)==='[' && text.charAt(text.length-1)===']';
+    if(isNote) return;
     out += '<li>' +
-      (isNote
-        ? '<span class="draft">'+text.slice(1,-1)+'</span>'
-        : '<span class="ttext">'+text+(isHdr?HDR_BADGE:'')+'</span>') +
+      '<span class="ttext">'+text+(isHdr?HDR_BADGE:'')+'</span>' +
       (kids ? renderTechBody(kids, lvl+1) : '') +
     '</li>';
   });
@@ -818,8 +879,9 @@ function renderInputRow(row){
       if(gi>0) parts.push('<span class="joiner sm">+</span>');
       const alts = [];
       g.forEach((btn,bi)=>{
+        alts.push('<span class="input-option">');
         if(bi>0) alts.push('<span class="or">or</span>');
-        alts.push('<img class="btnimg small riso" style="animation-delay:'+d+'ms" src="'+IMGS[btn]+'" alt="'+btn+'">'); d += 45;
+        alts.push('<img class="btnimg small riso" style="animation-delay:'+d+'ms" src="'+IMGS[btn]+'" alt="'+btn+'">'); d += 45; alts.push('</span>');
       });
       parts.push('<span class="btn-group">'+alts.join('')+'</span>');
     });
@@ -937,8 +999,9 @@ function renderStage(){
     if(gi>0) parts.push('<span class="joiner">+</span>');
     const alts = [];
     g.forEach((btn,bi)=>{
-      if(bi>0) alts.push('<span class="or">or</span>');
-      alts.push(btnImg(btn, d)); d += 55;
+      alts.push('<span class="input-option">');
+        if(bi>0) alts.push('<span class="or">or</span>');
+      alts.push(btnImg(btn, d)); d += 55; alts.push('</span>');
     });
     parts.push('<span class="btn-group">'+alts.join('')+'</span>');
   });
