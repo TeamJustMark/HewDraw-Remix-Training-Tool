@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -516,6 +515,15 @@
     .tile,.tag,.fighter,.mode,.crumb{transition:none;}
   }
 .source-note{font-size:12px;line-height:1.6;margin:12px 0 18px;color:var(--berry-dark);max-width:75ch}.source-note a,.sources a{color:inherit;text-underline-offset:3px}.sources{border-top:2px solid var(--berry);margin-top:50px;padding-top:16px;font-size:12px;line-height:1.7;color:var(--berry-dark)}
+  .btnimg.riso{filter:url(#duo-red);}
+  .move-badge{
+    display:inline-block;margin:0 0 14px;padding:4px 9px;
+    font-size:10.5px;font-weight:900;letter-spacing:.08em;
+    line-height:1.4;text-decoration:none;border-radius:2px;
+  }
+  .move-badge.hdr-source{background:var(--yellow);color:#5a4508;}
+  .move-badge.ultimate-source{background:var(--navy);color:#efe9f2;}
+  .move-badge:focus-visible{outline:3px dashed var(--berry);outline-offset:3px;}
 </style>
 </head>
 <body>
@@ -654,7 +662,7 @@ function renderCrumbs(){
 /* ---- character select ---- */
 function renderSelect(){
   pageEl.innerHTML =
-    '<header><h1>Character Select</h1><p class="sub">HDR document moves first, with Ultimate moves for entries the document does not cover.</p></header>' +
+    '<header><h1>Character Select</h1></header>' +
     '<div class="ready" aria-hidden="true"><div class="bar-y"></div><div class="bar-b"></div>' +
     '<div class="rtext">Choose your fighter</div></div>' +
     '<div class="roster" id="roster"></div>';
@@ -749,9 +757,12 @@ function renderTechStage(){
 let advIdx = 0;
 
 function moveSource(m){
-  if(m.source==='document') return '<p class="source-note">Source: <a href="https://docs.google.com/document/d/1dv7XGIRGmmYVPWyREW39VAehTUFeXqRGn2Zch5O-Fyw/edit" target="_blank" rel="noopener noreferrer">HDR for SSBU Dummies</a>. Document changes take priority.</p>';
-  if(m.source==='wiki') return '<p class="source-note">Ultimate fallback · <a href="'+CHAR_DATA[currentChar].wikiUrl+'#Moveset" target="_blank" rel="noopener noreferrer">SmashWiki: '+currentChar+'</a>. Check HDR character notes for shared mechanics and command changes.</p>';
-  return '';
+  const isHdr = m.source === 'document' || (m.source === 'controls' && ['Parry', 'Short Hop'].includes(m.name));
+  const label = isHdr ? 'HEWDRAW REMIX' : 'ULTIMATE';
+  const url = isHdr
+    ? 'https://docs.google.com/document/d/1dv7XGIRGmmYVPWyREW39VAehTUFeXqRGn2Zch5O-Fyw/edit'
+    : CHAR_DATA[currentChar].wikiUrl + '#Moveset';
+  return '<a class="move-badge '+(isHdr ? 'hdr-source' : 'ultimate-source')+'" href="'+url+'" target="_blank" rel="noopener noreferrer" aria-label="'+label+' move source">'+label+'</a>';
 }
 
 const HDR_BADGE = ' <span class="hdr">HewDraw Remix</span>';
@@ -931,7 +942,7 @@ function renderStage(){
     });
     parts.push('<span class="btn-group">'+alts.join('')+'</span>');
   });
-  let info = '';
+  let info = moveSource(m);
   if(m.alt) info += '<h3 class="dtitle">'+m.name+' <span class="dalt">\u2014 '+m.alt+'</span>'+((m.hdr && !m.desc)?HDR:'')+'</h3>';
   if(m.desc) info += '<p class="ddesc">'+m.desc+(m.hdr?HDR:'')+'</p>';
   if(m.variants){
@@ -940,11 +951,9 @@ function renderStage(){
       '<span class="vtext">'+v.desc+(v.hdr?HDR:'')+'</span></div>'
     ).join('') + '</div>';
   }
-  if(m.source==='document') info += '<p class="source-note">HDR document · v0.49.10 beta / v0.50 prerelease notes</p>';
   if(m.bullets){
     info += '<div class="dbullets">' + renderTechBody(m.bullets, 0) + '</div>';
   }
-  info += moveSource(m);
   stageEl.innerHTML =
     '<div class="tags">'+tags+'</div>' +
     '<div class="detail">' +
