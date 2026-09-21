@@ -721,20 +721,13 @@ const CAT_ICONS = {
     '<path d="M35 26 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>' +
     '<path d="M14 34 l1.5 3.5 3.5 1.5 -3.5 1.5 -1.5 3.5 -1.5 -3.5 -3.5 -1.5 3.5 -1.5 z"/></svg>',
   "Aerials":
-    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">' +
-    '<path d="M8 30 c6 -2 10 -8 10 -16 c4 2 6 6 6 10 c5 -1 8 -5 9 -10 c3 4 4 9 2 14 c-3 8 -12 12 -20 10 z"/>' +
-    '<path d="M10 40 h8 M22 40 h6 M32 40 h8"/></svg>',
+    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 36C8 23 22 11 41 6c-1 7-7 14-16 18l12-4c-2 7-10 11-19 11l10 1c-5 7-14 10-21 4Z"/><path d="M7 36c7-9 16-16 27-23"/></svg>',
   "Defense & Grab":
     '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">' +
     '<path d="M24 5 l15 5 v12 c0 10 -6 17 -15 21 c-9 -4 -15 -11 -15 -21 V10 z"/>' +
     '<path d="M24 5 v38 M9 22 h30"/></svg>',
   "Throws":
-    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">' +
-    '<circle cx="33" cy="12" r="4"/>' +
-    '<path d="M29 18 l-6 4 M33 16 v7 l5 5 M33 23 l-4 7"/>' +
-    '<path d="M8 34 c2 -10 10 -18 20 -20"/>' +
-    '<path d="M12 28 l-4 6 6 2"/>' +
-    '<path d="M8 40 h30"/></svg>',
+    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="35" cy="12" r="7"/><path d="M6 40C6 26 14 15 24 12"/><path d="M13 41c0-10 5-18 11-22"/><path d="m18 10 6 2-3 6"/></svg>',
   "Movement":
     '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">' +
     '<path d="M10 8 l12 16 -12 16 M26 8 l12 16 -12 16"/></svg>',
